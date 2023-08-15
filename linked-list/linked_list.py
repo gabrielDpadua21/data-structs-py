@@ -46,7 +46,32 @@ class LinkedList:
             new_node = Node(value, self.head)
             self.head = new_node
             self.length += 1
+            
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        if self.length == 1:
+            self.tail = None
+        self.length -= 1
+        
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
     
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+        
     def insert(self, index, value):
         pass
     
